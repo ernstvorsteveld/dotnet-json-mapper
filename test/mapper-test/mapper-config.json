@@ -1,0 +1,24 @@
+{
+    "mappings": [
+        {
+            "from": {
+                "name": "simple_string_attr",
+                "type": "string"
+            },
+            "to": {
+                "name": "to_simple_string_attr",
+                "type": "string"
+            }
+        },
+        {
+            "from": {
+                "name": "src.string_from",
+                "type": "string"
+            },
+            "to": {
+                "name": "to.string_to",
+                "type": "string"
+            }
+        }
+    ]
+}
