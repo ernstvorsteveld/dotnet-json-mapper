@@ -16,7 +16,7 @@ namespace com.stern.json.mapper
         public Mappings Read()
         {
             Mappings specification = JsonSerializer.Deserialize<Mappings>(json);
-            Console.WriteLine($"config: {specification}");
+            Console.WriteLine($"Loaded configuration:\n{specification}");
             return specification;
         }
     }
@@ -30,8 +30,8 @@ namespace com.stern.json.mapper
             var text = "Mappings: \n";
             foreach (var element in mappings)
             {
-                text += "Element: " + element["from"] + ",\n";
-                text += "Element: " + element["to"] + ",\n";
+                text += " Element:(from)\n " + element["from"] + ",\n";
+                text += " Element:(to)\n " + element["to"] + ",\n";
             }
             return text;
         }
@@ -44,8 +44,8 @@ namespace com.stern.json.mapper
 
         public override string ToString()
         {
-            var text = "MappingConfig: ";
-            text += "Name: " + name + ", Type: " + type;
+            var text = " MappingConfig: ";
+            text += "\n   Name: " + name + "\n   Type: " + type;
             return text;
         }
     }
