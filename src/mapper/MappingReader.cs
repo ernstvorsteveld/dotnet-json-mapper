@@ -16,7 +16,6 @@ namespace com.stern.json.mapper
         public Mappings Read()
         {
             Mappings specification = JsonSerializer.Deserialize<Mappings>(json);
-            Console.WriteLine($"Loaded configuration:\n{specification}");
             return specification;
         }
     }
