@@ -57,7 +57,7 @@ namespace com.stern.json.mapper
             {
                 if (this.output[attribute] is null)
                 {
-                    this.output.Add(new JProperty(attribute, value.ToString()));
+                    this.output.Add(new JProperty(attribute, value));
                 }
             }
         }
