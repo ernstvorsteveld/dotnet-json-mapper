@@ -31,8 +31,7 @@ namespace com.stern.json.mapper
         private JObject MapElement(Dictionary<string, MappingConfig> mappingConfig, JObject input, JObject output)
         {
             string[] toAttrs = mappingConfig["to"].name.Split(".", StringSplitOptions.None);
-            var value = new ValueGetter(input).getValue(mappingConfig["from"]);
-            Console.WriteLine($"Value: {value}");
+            string value = new ValueGetter(input).getValue(mappingConfig["from"]);
             new AttributeSetter(output).setAttribute(mappingConfig["to"], value);
             return output;
         }
@@ -47,9 +46,8 @@ namespace com.stern.json.mapper
             this.output = output;
         }
 
-        public void setAttribute(MappingConfig mappingConfig, Object valueObject)
+        public void setAttribute(MappingConfig mappingConfig, string value)
         {
-            var value = (string)valueObject;
             if (value is null)
             {
                 return;
@@ -72,16 +70,15 @@ namespace com.stern.json.mapper
         {
             this.input = input;
         }
-        public Object getValue(MappingConfig mappingConfig)
+        public string getValue(MappingConfig mappingConfig)
         {
             string[] fromAttrs = mappingConfig.name.Split('.');
             var value = getValueToken(input, fromAttrs);
             return value;
         }
 
-        private Object getValueToken(JToken input, string[] attrs)
+        private string getValueToken(JToken input, string[] attrs)
         {
-            Console.WriteLine($"getValueToken: input: {input}, attrs: {attrs[0]}, attrslength {attrs.Length}.");
             if (input is null)
             {
                 return null;
