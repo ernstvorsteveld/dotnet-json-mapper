@@ -26,7 +26,7 @@ namespace com.stern.json.mapper
             {
                 output = MapElement(element, json, output);
             }
-            return output.ToString();
+            return output.ToString(Formatting.None);
         }
         private JObject MapElement(Dictionary<string, MappingConfig> mappingConfig, JObject input, JObject output)
         {
@@ -61,7 +61,6 @@ namespace com.stern.json.mapper
                 {
                     this.output.Add(new JProperty(attribute, value.ToString()));
                 }
-                // Console.WriteLine($"SetAttribute: {output}");
             }
         }
     }
@@ -75,7 +74,6 @@ namespace com.stern.json.mapper
         }
         public Object getValue(MappingConfig mappingConfig)
         {
-            // Console.WriteLine($"GetValue: mappingConfig: {mappingConfig}, name {mappingConfig.name}.");
             string[] fromAttrs = mappingConfig.name.Split('.');
             var value = getValueToken(input, fromAttrs);
             return value;

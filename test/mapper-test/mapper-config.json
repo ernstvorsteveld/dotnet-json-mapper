@@ -6,7 +6,7 @@
                 "type": "string"
             },
             "to": {
-                "name": "to_simple_string_attr_new",
+                "name": "to_simple_string_attr",
                 "type": "string"
             }
         },
