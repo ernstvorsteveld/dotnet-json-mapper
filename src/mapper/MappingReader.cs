@@ -41,6 +41,15 @@ namespace com.stern.json.mapper
         public string name { get; set; }
         public string type { get; set; }
 
+        public MappingConfig()
+        {
+        }
+        public MappingConfig(string name, string type)
+        {
+            this.name = name;
+            this.type = type;
+        }
+
         public override string ToString()
         {
             var text = " MappingConfig: ";

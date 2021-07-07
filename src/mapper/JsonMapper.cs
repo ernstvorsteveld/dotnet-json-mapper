@@ -37,7 +37,7 @@ namespace com.stern.json.mapper
         }
     }
 
-    class AttributeSetter
+    public class AttributeSetter
     {
         private JObject output;
 
@@ -63,12 +63,16 @@ namespace com.stern.json.mapper
         }
     }
 
-    class ValueGetter
+    public class ValueGetter
     {
         private JObject input;
         public ValueGetter(JObject input)
         {
             this.input = input;
+        }
+        public ValueGetter(string input)
+        {
+            this.input = JObject.Parse(input);
         }
         public string getValue(MappingConfig mappingConfig)
         {
