@@ -13,15 +13,15 @@ namespace mapper_test.converters
         private ConverterProvider convertProvider;
         private MappingConfig mappingConfig;
 
+        [DataRow(AttributeType.numeric, "100", "100")]
+        [DataRow(AttributeType.numeric, 10.01, "10.01")]
         [DataRow(AttributeType.@string, "simple-value", "simple-value")]
         [DataTestMethod]
-        public void should_map_simple_string(AttributeType type, Object value, string expected)
+        public void should_map_simple_values(AttributeType type, Object value, string expected)
         {
             givenConvertersAreConfigured();
             givenMappingConfigForString(new MappingConfig { name = "_", type = "string" });
-
             var actual = whenConverting(type, value);
-
             thanAssert(actual, expected);
         }
 
@@ -31,6 +31,7 @@ namespace mapper_test.converters
             ConverterProviderBuilder
                 .New()
                 .converter(AttributeType.@string, new StringConverter())
+                .converter(AttributeType.numeric, new NumericConverter())
                 .build();
         }
 
@@ -46,6 +47,9 @@ namespace mapper_test.converters
             {
                 case AttributeType.@string: 
                     token = JToken.Parse($"{{ 'value' : '{value}' }}");
+                    break;
+                case AttributeType.numeric:
+                    token = JToken.Parse($"{{ 'value' : {value} }}");
                     break;
                 default:
                     throw new NotImplementedException("Type not implemented yet");

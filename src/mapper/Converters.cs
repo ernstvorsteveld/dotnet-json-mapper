@@ -31,7 +31,7 @@ namespace com.stern.json.mapper.converters
     {
         private IDictionary<AttributeType, Converter> converters = new Dictionary<AttributeType, Converter>();
 
-        public static ConverterProviderBuilder New() 
+        public static ConverterProviderBuilder New()
         {
             return new ConverterProviderBuilder();
         }
@@ -63,4 +63,17 @@ namespace com.stern.json.mapper.converters
             return default(String);
         }
     }
+
+    public class NumericConverter : Converter
+    {
+        public string from(JToken token, MappingConfig mappingConfig)
+        {
+            return token.First.First.Value<string>();
+        }
+        public String to<String>(string value, MappingConfig mappingConfig)
+        {
+            return default(String);
+        }
+    }
+
 }
