@@ -5,7 +5,6 @@ using Newtonsoft.Json.Linq;
 using com.stern.json.mapper;
 using com.stern.json.mapper.converters;
 
-
 namespace mapper_test.converters
 {
     [TestClass]
@@ -18,15 +17,15 @@ namespace mapper_test.converters
         [DataTestMethod]
         public void should_map_simple_string(AttributeType type, Object value, string expected)
         {
-            whenConvertersAreConfigured();
-            whenMappingConfigForString(new MappingConfig { name = "_", type = "string" });
+            givenConvertersAreConfigured();
+            givenMappingConfigForString(new MappingConfig { name = "_", type = "string" });
 
-            var actual = doConvert(type, value);
+            var actual = whenConverting(type, value);
 
-            assertValue(actual, expected);
+            thanAssert(actual, expected);
         }
 
-        private void whenConvertersAreConfigured()
+        private void givenConvertersAreConfigured()
         {
             this.convertProvider =
             ConverterProviderBuilder
@@ -35,12 +34,12 @@ namespace mapper_test.converters
                 .build();
         }
 
-        private void whenMappingConfigForString(MappingConfig mappingConfig)
+        private void givenMappingConfigForString(MappingConfig mappingConfig)
         {
             this.mappingConfig = mappingConfig;
         }
 
-        string doConvert(AttributeType type, Object value)
+        string whenConverting(AttributeType type, Object value)
         {
             JToken token = null;
             switch (type)
@@ -55,7 +54,7 @@ namespace mapper_test.converters
             return convertProvider.GetConverter(type).from(token, this.mappingConfig);
         }
 
-        void assertValue(string actual, string expected)
+        void thanAssert(string actual, string expected)
         {
             actual.Should().Be(expected);
         }
