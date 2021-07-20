@@ -1,0 +1,15 @@
+@startuml "mapper-converter"
+
+participant Agent
+participant ConverterProvider
+participant StringConverter <<Converter>>
+
+Agent --> ConverterProvider: getConverter(type)
+activate Agent
+activate ConverterProvider
+Agent <-- ConverterProvider: converter
+deactivate
+
+Agent --> StringConverter: from(token,mappingConfig)
+deactivate
+@enduml
